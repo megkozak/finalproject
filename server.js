@@ -15,13 +15,13 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   /// Logging middleware
 
-  console.log(req.method + " " + req.path)
-  next()
-})
+  console.log(req.method + " " + req.path);
+  next();
+});
 
-mongoose.connect(config.database_url)
+mongoose.connect(config.database_url);
 
 setupRoutes(app);
 
-app.listen(port)
-console.log("Listening on " + port)
+app.listen(port);
+console.log("Listening on " + port);
