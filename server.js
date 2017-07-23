@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config');
 const setupRoutes = require('./app/routes')
-const port = process.env.PORT || 8081
+const port = process.env.PORT || 3001
 
 const app = express();
 
