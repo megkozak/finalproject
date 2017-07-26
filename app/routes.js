@@ -10,14 +10,18 @@ module.exports = function(app) {
   app.patch('/admins/:adminId', adminController.update)
 
   // user
-  app.post('/user', userController.create)
-  app.get('/user', userController.readAll)
-  app.get('/user/:userId', userController.readOne)
-  app.patch('/user/:userId', userController.update)
-  
+  app.post('/users', userController.create)
+  app.get('/users', userController.readAll)
+  app.post('/user', userController.readOne)
+  app.patch('/users/:userId', userController.update)
+
   // goals
   app.post('/goals', goalsController.create)
   app.get('/goals', goalsController.readAll)
   app.get('/goals/:goalsId', goalsController.readOne)
   app.patch('/goals/:goalsId', goalsController.update)
+
+  //views
+  app.get('/', userController.home)
+  app.get('/login', userController.login)
 }

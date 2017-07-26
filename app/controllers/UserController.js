@@ -1,6 +1,14 @@
 const User = require('../models/User');
 
 module.exports = {
+  login: function(req, res) {
+    return res.render('login')
+  },
+
+  home: function(req, res) {
+    return res.render('home')
+  },
+
   create: function(req, res) {
     var userInfo = req.body
     User.create(userInfo, (err, user) => {
@@ -8,6 +16,7 @@ module.exports = {
       return res.status(201).send(user);
     })
   },
+
   readAll: function(req, res) {
     User.find({}, (err, users) => {
       if (err) { return res.status(500).send(err); }
@@ -16,9 +25,9 @@ module.exports = {
   },
 
   readOne: function(req, res) {
-    User.findById(req.param('userId'), (err, user) => {
-      if (err) { return res.status(500).send(err); }
-      return res.send(200, user)
+    var name = req.body.name;
+    User.findOne({ name: name }, (err, user) => {
+      return res.render('loginResult', { err: err, user: user })
     });
   },
 
