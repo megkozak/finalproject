@@ -1,18 +1,10 @@
-html
-  head
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+extends layout
 
-  body
-    div
-      div.navbar.navbar-default
-        div.container-fluid
-          div.navbar-header
-            a(href="/login").navbar-brand Login
-            a.navbar-brand Set Goals
-      div.jumbotron
-        div.container-fluid
-          if !user
-            p No user found!
-          else
-            p= user
-            p= err
+block body
+  div.jumbotron
+    div.container-fluid
+      if !user
+        p No user found!
+      else
+        p= user
+        p= err

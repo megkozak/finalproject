@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title Money Jar
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
+  body
+    div
+      div.navbar.navbar-default
+        div.container-fluid
+          div.navbar-header
+            a(href="/login").navbar-brand Login
+            a(href="/goals").navbar-brand Set Goals
+            a(href="/progress").navbar-brand Achieve
+      div.jumbotron
+        div.container-fluid
+          p Money Jar
+    .container
+      block body

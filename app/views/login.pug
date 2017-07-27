@@ -1,18 +1,10 @@
-html
-  head
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+extends layout
 
-  body
-    div
-      div.navbar.navbar-default
-        div.container-fluid
-          div.navbar-header
-            a(href="/login").navbar-brand Login
-            a.navbar-brand Set Goals
-      div.jumbotron
-        div.container-fluid
-          form(id="1234", method="POST", action="/user")
-            div.form-group
-              label(for="nameInput")
-              input(type="text", id="nameInput", placeholder="placeholder", name="name").form-control
-              button(type="submit") Submit
+block body
+  div.jumbotron
+    div.container-fluid
+      form(id="user name", method="POST", action="/user")
+        div.form-group
+          label(for="nameInput")
+          input(type="text", id="nameInput", placeholder="Enter your user name here", name="name").form-control
+          button(type="submit") Submit

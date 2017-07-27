@@ -1,0 +1,10 @@
+extends layout
+
+block body
+  div.jumbotron
+    div.container-fluid
+      form(id="goals", method="POST", action="/goals")
+        div.form-group
+          label(for="goalInput")
+          input(type="text", id="goalInput", placeholder="Enter your goal here", name="goal").form-control
+          button(type="submit") Submit
