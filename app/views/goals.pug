@@ -6,5 +6,15 @@ block body
       form(id="goals", method="POST", action="/goals")
         div.form-group
           label(for="goalInput")
-          input(type="text", id="goalInput", placeholder="Enter your goal here", name="goal").form-control
+          input(type="text", id="goalInput", placeholder="Enter your goal title", name="title").form-control
+          input(type="text", id="goalInput", placeholder="Enter your goal description", name="body").form-control
           button(type="submit") Submit
+
+  div.container
+    if !goals
+      p No goals found!
+    else
+      each goal in goals
+        h2= goal.title || 'No Title'
+        p= goal.body || 'No Body'
+        p= goal.date
