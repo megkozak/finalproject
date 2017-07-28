@@ -27,7 +27,13 @@ module.exports = {
   readOne: function(req, res) {
     var name = req.body.name;
     User.findOne({ name: name }, (err, user) => {
-      return res.render('loginResult', { err: err, user: user })
+      if (!user) {
+        var userInfo = req.body
+        User.create(userInfo, (err, user) => {
+          return res.render('loginResult', { err: err, user: user })
+        })
+      } else
+        return res.render('loginResult', { err: err, user: user })
     });
   },
 

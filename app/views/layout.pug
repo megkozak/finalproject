@@ -6,13 +6,18 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
 
   body
-    div
-      div.navbar.navbar-default
-        div.container-fluid
-          div.navbar-header
-            a(href="/login").navbar-brand Login
-            a(href="/goals").navbar-brand Set Goals
-            a(href="/progress").navbar-brand Achieve
+    nav.navbar.navbar-light.bg-faded
+      div.container-fluid
+        div.navbar-header
+          a.navbar-brand(href='/')
+            img(src='/assets/money-jar.jpeg', width='30', height='30', alt='')
+          ul.nav.navbar-nav
+            li
+              a(href="/login") Login
+            li
+              a(href="/goals") Set Goals
+            li
+              a(href="/progress") Achieve
       div.jumbotron
         div.container-fluid
           p Money Jar

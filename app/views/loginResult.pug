@@ -3,8 +3,5 @@ extends layout
 block body
   div.jumbotron
     div.container-fluid
-      if !user
-        p No user found!
-      else
-        p= user.name
-        p= err
+      p= user.name
+      p= err
