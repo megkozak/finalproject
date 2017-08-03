@@ -4,6 +4,7 @@ block body
   div.jumbotron
     div.container-fluid
       form(id="goals", method="POST", action="/goals")
+        input(type="text", name="_user", value='test', style="width: 500px;")
         div.form-group
           label(for="goalInput")
           input(type="text", id="goalInput", placeholder="Enter your goal title", name="title").form-control
@@ -12,7 +13,7 @@ block body
 
   div.container
     if !goals
-      p.No goals found!
+      //- p No goals found!
     else
       each goal in goals
         h2= goal.title || 'No Title'

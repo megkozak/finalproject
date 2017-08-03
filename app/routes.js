@@ -12,12 +12,12 @@ module.exports = function(app) {
   // user
   app.post('/users', userController.create)
   app.get('/users', userController.readAll)
-  app.post('/user', userController.readOne)
+  app.post('/users/:userId', userController.readOne)
   app.patch('/users/:userId', userController.update)
 
   // goals
   app.post('/goals', goalsController.create)
-  app.get('/goals', goalsController.readAll)
+  app.post('/users/:userId', goalsController.readAll)
   app.get('/goals/:goalsId', goalsController.readOne)
   app.patch('/goals/:goalsId', goalsController.update)
 

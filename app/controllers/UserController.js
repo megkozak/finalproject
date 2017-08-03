@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Goal = require('../models/Goal');
 
 module.exports = {
   login: function(req, res) {
@@ -25,7 +26,7 @@ module.exports = {
   },
 
   readOne: function(req, res) {
-    var name = req.body.name;
+    var name = req.param('userId');
     User.findOne({ name: name }, (err, user) => {
       if (!user) {
         var userInfo = req.body

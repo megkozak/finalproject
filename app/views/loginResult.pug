@@ -3,6 +3,8 @@ extends layout
 block body
   div.jumbotron
     div.container-fluid
+      p
+        a(href=`/users/${user._id}`) User
       p= user.name
       p= err
 
@@ -10,8 +12,8 @@ block body
       form(id="goals", method="POST", action="/goals")
         div.form-group
           label(for="goalInput")
-          input(type="text", id="goalInput", placeholder="Enter your goal title", name="title").form-control
-          input(type="text", id="goalInput", placeholder="Enter your goal description", name="body").form-control
+          input(type="text", id="goalInput", placeholder="What do you want to achieve?", name="title").form-control
+          input(type="text", id="goalInput", placeholder="Describe it here", name="body").form-control
           button(type="submit") Submit
 
     div.container
