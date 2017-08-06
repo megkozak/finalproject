@@ -14,7 +14,7 @@ module.exports = {
     var userInfo = req.body
     User.create(userInfo, (err, user) => {
       if (err) { return res.status(500).send(err); }
-      return res.render(`users/show`, { err: err, user: user });
+      return res.redirect(`/users/show/${user._id}`);
     })
   },
 
@@ -26,15 +26,19 @@ module.exports = {
   },
 
   readOne: function(req, res) {
-    var name = req.param('userId');
-    User.findOne({ name: name }, (err, user) => {
+    var id = req.param('userId');
+    User.
+    findOne({ _id: id }).
+    exec((err, user) => {
       if (!user) {
         var userInfo = req.body
         User.create(userInfo, (err, user) => {
           return res.render('users/show', { err: err, user: user })
         })
       } else
-        return res.render('users/show', { err: err, user: user })
+        Goal.find({_user: user._id}, (err, goals) =>
+          res.render('users/show', { err: err, user: user, goals: goals })
+      );
     });
   },
 

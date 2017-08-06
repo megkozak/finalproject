@@ -10,6 +10,7 @@ block body
 
     div.container-fluid
       form(id="goals", method="POST", action="/goals")
+        input(type="hidden", name="_user", value=user._id)
         div.form-group
           label(for="goalInput")
           input(type="text", id="goalInput", placeholder="What do you want to achieve?", name="title").form-control
@@ -17,8 +18,8 @@ block body
           button(type="submit") Submit
 
     div.container
-      if !goals
-        //- p No goals found!
+      if goals.length == 0
+        p No goals found!
       else
         each goal in goals
           h2= goal.title || 'No Title'

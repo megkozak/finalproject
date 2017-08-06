@@ -8,7 +8,7 @@ module.exports = {
     // goalInfo._user =
     Goal.create(goalInfo, (err, goal) => {
       if (err) { return res.status(500).send(err); }
-      return res.redirect(`/goals/${goal._id}`);
+      return res.redirect(`/goals/show/${goal._id}`);
     })
   },
 
@@ -24,7 +24,8 @@ module.exports = {
   },
 
   readOne: function(req, res) {
-    Goal.findById(req.param('goalsId')).
+    Goal.
+    findById(req.param('goalsId')).
     populate('_user').
     exec((err, goal) => {
       return res.render('goals/show', {err: err, goal: goal})

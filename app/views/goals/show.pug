@@ -6,5 +6,7 @@ block body
       p No goal found!
     else
         h2= goal.title || 'No Title'
+        p
+          a(href=`/users/show/${goal._user._id}`)= goal._user.name
         p= goal.body || 'No Body'
         p= goal.date
