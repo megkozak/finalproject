@@ -3,7 +3,7 @@ extends layout
 block body
   div.jumbotron
     div.container-fluid
-      form(id="user name", method="POST", action="/users/:userId")
+      form(id="user name", method="POST", action="/users")
         div.form-group
           label(for="nameInput")
           input(type="text", id="nameInput", placeholder="Enter your user name here", name="name").form-control

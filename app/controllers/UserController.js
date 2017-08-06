@@ -14,14 +14,14 @@ module.exports = {
     var userInfo = req.body
     User.create(userInfo, (err, user) => {
       if (err) { return res.status(500).send(err); }
-      return res.status(201).send(user);
+      return res.render(`users/show`, { err: err, user: user });
     })
   },
 
   readAll: function(req, res) {
     User.find({}, (err, users) => {
       if (err) { return res.status(500).send(err); }
-      return res.send(200, users)
+      return res.render('users/index', {users: users})
     });
   },
 
@@ -31,10 +31,10 @@ module.exports = {
       if (!user) {
         var userInfo = req.body
         User.create(userInfo, (err, user) => {
-          return res.render('loginResult', { err: err, user: user })
+          return res.render('users/show', { err: err, user: user })
         })
       } else
-        return res.render('loginResult', { err: err, user: user })
+        return res.render('users/show', { err: err, user: user })
     });
   },
 

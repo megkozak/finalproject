@@ -1,1 +1,10 @@
-#THIS WILL SHOW ONE INDIVIDUAL GOAL 
+extends ../layout
+
+block body
+  div.container
+    if !goal
+      p No goal found!
+    else
+        h2= goal.title || 'No Title'
+        p= goal.body || 'No Body'
+        p= goal.date

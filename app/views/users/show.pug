@@ -1,11 +1,11 @@
-extends layout
+extends ../layout
 
 block body
   div.jumbotron
     div.container-fluid
       p
-        a(href=`/users/${user._id}`) User
-      p= user.name
+        a(href=`/users/show/${user._id}`)= user.name
+      //- p= user.name
       p= err
 
     div.container-fluid

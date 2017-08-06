@@ -18,7 +18,7 @@ module.exports = {
       console.log(user);
       Goal.find({'_user': user.name}, (err, goals) => {
         // if (err) { return res.status(500).send(err); }
-        return res.render('goals',{err: err, goals: goals, user: user.name})
+        return res.render('goals/index',{err: err, goals: goals, user: user.name})
        });
     })
   },
@@ -27,7 +27,7 @@ module.exports = {
     Goal.findById(req.param('goalsId')).
     populate('_user').
     exec((err, goal) => {
-      return res.render('goal', {err: err, goal: goal})
+      return res.render('goals/show', {err: err, goal: goal})
     });
   },
 
@@ -35,7 +35,7 @@ module.exports = {
     var goalInfo = req.body
     Goal.update({ _id: req.param('goalsId') }, goalInfo, (err, goal) => {
       if (err) { return res.status(500).send(err); }
-      return res.redirect(`/goals/${goal._id}`);
+      return res.redirect(`/goals/show`);
     })
   }
 }
