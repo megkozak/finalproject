@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
+let Schema = mongoose.Schema
 
-const userSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const userSchema = new Schema({
   name: String,
   goals: [{type: mongoose.Schema.Types.ObjectId, ref: 'Goal'}]
 })

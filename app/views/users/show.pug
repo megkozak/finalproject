@@ -3,8 +3,7 @@ extends ../layout
 block body
   div.jumbotron
     div.container-fluid
-      p
-        a(href=`/users/show/${user._id}`)= user.name
+      p= user.name
       //- p= user.name
       p= err
 
@@ -18,10 +17,17 @@ block body
           button(type="submit") Submit
 
     div.container
-      if goals.length == 0
-        p No goals found!
-      else
+      if goals && goals.length === 0
+        //- p No goals found!
+      else if goals
         each goal in goals
           h2= goal.title || 'No Title'
           p= goal.body || 'No Body'
           p= goal.date
+        //- div.container-fluid
+        //-   form(id="goalProg", method="POST", action="/goals")
+        //-     input(type="hidden", name="_user", value=user._id)
+        div.form-group
+          label(for="goalProg")
+          input(type="text", id="goalProg", placeholder="Completed? Y or N", name="title").form-control
+          //- button(type="Submit")

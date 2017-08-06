@@ -4,11 +4,12 @@ const User = require('../models/User');
 module.exports = {
   create: function(req, res) {
     var goalInfo = req.body;
+    console.log('rekttt body:', req.body._user)
     // console.log('goal info: ', goalInfo);
     // goalInfo._user =
     Goal.create(goalInfo, (err, goal) => {
       if (err) { return res.status(500).send(err); }
-      return res.redirect(`/goals/show/${goal._id}`);
+      return res.redirect(`/users/show/${req.body._user}`);
     })
   },
 

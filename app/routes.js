@@ -3,7 +3,7 @@ const userController = require('./controllers/UserController')
 const goalsController = require('./controllers/GoalsController')
 
 module.exports = function(app) {
-  
+
   // admin
   app.post('/admins', adminController.create)
   app.get('/admins/index', adminController.readAll)
@@ -26,8 +26,3 @@ module.exports = function(app) {
   app.get('/', userController.home)
   app.get('/login', userController.login)
 }
-
-// index/show/new/edit/
-
-// 1- User logs IN
-// 2- User lands in goals/index (WHICH also has a form to add the goal AND has LINK to go to users/show)

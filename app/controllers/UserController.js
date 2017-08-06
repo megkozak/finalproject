@@ -12,7 +12,10 @@ module.exports = {
 
   create: function(req, res) {
     var userInfo = req.body
-    User.create(userInfo, (err, user) => {
+    // console.log('user info:', userInfo);
+    User.findOne({
+        name: userInfo.name
+    }, (err, user) => {
       if (err) { return res.status(500).send(err); }
       return res.redirect(`/users/show/${user._id}`);
     })
@@ -26,6 +29,7 @@ module.exports = {
   },
 
   readOne: function(req, res) {
+    console.log('request params:', req.params);
     var id = req.param('userId');
     User.
     findOne({ _id: id }).
