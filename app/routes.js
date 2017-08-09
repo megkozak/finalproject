@@ -20,7 +20,7 @@ module.exports = function(app) {
   app.post('/goals', goalsController.create)
   app.get('/goals/index', goalsController.readAll)
   app.get('/goals/show/:goalsId', goalsController.readOne)
-  app.patch('/goals', goalsController.update)
+  app.patch('/goals/update/:goalsId', goalsController.update)
 
   //views
   app.get('/', userController.home)

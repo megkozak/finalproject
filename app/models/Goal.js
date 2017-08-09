@@ -4,7 +4,8 @@ const goalSchema = mongoose.Schema({
   _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   title:  String,
   body:   String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  complete: [false]
 })
 
 module.exports = mongoose.model('Goals', goalSchema)

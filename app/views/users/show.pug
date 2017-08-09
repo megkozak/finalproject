@@ -24,10 +24,8 @@ block body
           h2= goal.title || 'No Title'
           p= goal.body || 'No Body'
           p= goal.date
-        //- div.container-fluid
-        //-   form(id="goalProg", method="POST", action="/goals")
-        //-     input(type="hidden", name="_user", value=user._id)
-        div.form-group
-          label(for="goalProg")
-          input(type="text", id="goalProg", placeholder="Completed? Y or N", name="title").form-control
-          //- button(type="Submit")
+          form(id="check", method="PATCH", action="/goals/update/:goalsId")
+            input(type="hidden", name="_goal", value=goal._id)
+            div.form-group
+              button(type="submit") Submit
+          //- button(onlick='goalProg()')
