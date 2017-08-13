@@ -7,6 +7,4 @@ block body
     else
       p
         a(href=`/users/show/${goal._user._id}`)= goal._user.name
-        h2= goal.title || 'No Title'
-        p= goal.body || 'No Body'
-        p= goal.date
+      include goal

@@ -21,11 +21,4 @@ block body
         //- p No goals found!
       else if goals
         each goal in goals
-          h2= goal.title || 'No Title'
-          p= goal.body || 'No Body'
-          p= goal.date
-          form(id="check", method="PATCH", action="/goals/update/:goalsId")
-            input(type="hidden", name="_goal", value=goal._id)
-            div.form-group
-              button(type="submit") Submit
-          //- button(onlick='goalProg()')
+          include ../goals/goal

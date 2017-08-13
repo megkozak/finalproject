@@ -1,0 +1,17 @@
+h2
+  a(href=`/goals/show/${goal._id}`)
+    if goal.complete
+      strike= goal.title || 'No Title'
+    else
+      = goal.title || 'No Title'
+p= goal.body || 'No Body'
+p= goal.date
+form(id="check", method="GET", action=`/goals/update/${goal._id}`)
+  input(type="hidden", name="goalsId", value=goal._id)
+  input(type="hidden", name="undo", value=`${goal.complete}`)
+  div.form-group
+    button(type="submit")
+      if goal.complete
+        | Undo
+      else
+        | Complete

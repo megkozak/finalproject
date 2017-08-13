@@ -5,7 +5,7 @@ const goalSchema = mongoose.Schema({
   title:  String,
   body:   String,
   date: { type: Date, default: Date.now },
-  complete: [false]
+  complete: { type: Boolean, default: false }
 })
 
 module.exports = mongoose.model('Goals', goalSchema)

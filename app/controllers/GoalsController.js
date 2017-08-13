@@ -2,6 +2,13 @@ const Goal = require('../models/Goal');
 const User = require('../models/User');
 
 module.exports = {
+  all: function(req,res){
+    Goal.find({},function(err,goals){
+      if (err) res.send(500)
+      res.json(goals)
+    })
+  },
+
   create: function(req, res) {
     var goalInfo = req.body;
     Goal.create(goalInfo, (err, goal) => {
@@ -46,9 +53,16 @@ module.exports = {
 
   update: function(req, res) {
     var goalInfo = req.body
-    Goal.update({ _id: req.param('goalsId') }, goalInfo, (err, goal) => {
+    const id = req.params.goalsId
+    var goalComplete;
+    if(req.query.undo === "true"){
+      goalComplete = false
+    }else{
+      goalComplete = true
+    }
+    Goal.update({ _id: id }, { complete: goalComplete }, (err, goal) => {
       if (err) { return res.status(500).send(err); }
-      return res.redirect(`/goals/show`);
+      return res.redirect(req.header('Referer'));
     })
   }
 }
