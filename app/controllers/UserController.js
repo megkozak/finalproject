@@ -6,6 +6,10 @@ module.exports = {
     return res.render('login')
   },
 
+  signup: function(req, res) {
+    return res.render('signup')
+  },
+
   home: function(req, res) {
     return res.render('home')
   },

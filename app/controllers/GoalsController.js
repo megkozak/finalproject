@@ -3,19 +3,19 @@ const User = require('../models/User');
 
 module.exports = {
   all: function(req,res){
-    Goal.find({},function(err,goals){
-      if (err) res.send(500)
-      res.json(goals)
+    passport.authenticate('bearer', function(err, user) {
+      if (user) {
+        Goal.find({},function(err,goals){
+          if (err) res.send(500)
+          res.json(goals)
+        })
+      } else {
+        return res.redirect('/users/login')
+      }
     })
   },
 
-  create: function(req, res) {
-    var goalInfo = req.body;
-    Goal.create(goalInfo, (err, goal) => {
-      if (err) { return res.status(500).send(err); }
-      return res.redirect(`/users/show/${req.body._user}`);
-    })
-  },
+
 // pass id from goal into function
 // use this id to find goal to update
 
@@ -31,16 +31,7 @@ module.exports = {
   //   })
   // },
 
-  readAll: function(req, res) {
-    // console.log(req);
-    User.where('name').equals(req.body.name).exec((err, user) => {
-      console.log(user);
-      Goal.find({'_user': user.name}, (err, goals) => {
-        // if (err) { return res.status(500).send(err); }
-        return res.render('goals/index',{err: err, goals: goals, user: user.name})
-       });
-    })
-  },
+
 
   readOne: function(req, res) {
     Goal.
@@ -64,5 +55,51 @@ module.exports = {
       if (err) { return res.status(500).send(err); }
       return res.redirect(req.header('Referer'));
     })
+  },
+
+
+  //// IMPORTANT
+  create: function(req, res) {
+    var goalInfo = req.body;
+    var user = req.user
+    goalInfo.user = user;
+    Goal.create(goalInfo, (err, goal) => {
+      if (err) { return res.status(500).send(err); }
+      user.goals.push(goal)
+      user.save((err) => {
+        if (err) { return res.status(500).send(err); }
+        return res.redirect(`/goals/index`);
+      });
+    })
+  },
+
+  readAll: function(req, res) {
+    Goal.find({ 'user': req.user.id }, (err, goals) => {
+      if (err) { return res.status(500).send(err); }
+      var sortedGoals = goals.sort((a, b) => a.weight > b.weight);
+      var totalWeight = goals.reduce((sum, goal) => sum + goal.weight, 0)
+      return res.render('goals/index', {
+        err: err,
+        goals: sortedGoals,
+        totalWeight: totalWeight,
+        user: req.user.name
+      })
+    });
+  },
+
+  complete: function(req, res) {
+    var goalId = req.param('goalId');
+    Goal.findOneAndUpdate({ _id: goalId }, { complete: true }, (err) => {
+      if (err) { return res.status(500).send(err); }
+      return res.redirect('/goals/index')
+    });
+  },
+
+  undo: function(req, res) {
+    var goalId = req.param('goalId');
+    Goal.findOneAndUpdate({ _id: goalId }, { complete: false }, (err) => {
+      if (err) { return res.status(500).send(err); }
+      return res.redirect('/goals/index')
+    });
   }
 }

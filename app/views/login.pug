@@ -3,8 +3,11 @@ extends layout
 block body
   div.jumbotron
     div.container-fluid
-      form(id="user name", method="POST", action="/users")
+      form(id="user name", method="POST", action="/login")
         div.form-group
-          label(for="nameInput")
-          input(type="text", id="nameInput", placeholder="Enter your user name here", name="name").form-control
-          button(type="submit") Submit
+          label(for="nameInput") Email
+          input(type="text", id="email", placeholder="Enter your email here", name="email").form-control
+        div.form-group
+          label(for="nameInput") Password
+          input(type="password", id="password", placeholder="Password", name="password").form-control
+          button(type="submit") Login
