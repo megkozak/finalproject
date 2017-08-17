@@ -15,24 +15,6 @@ module.exports = {
     })
   },
 
-
-// pass id from goal into function
-// use this id to find goal to update
-
-  // complete: function(req, res) {
-  //   // var goalProg = req.body;
-  //   Goal.where('_id').equals(req.body._id).exec((err, user) => {
-  //     console.log(goal);
-  //     Goal.complete = true;
-  //   // Goal.complete(goalProg._id, (err, goal) => {
-  //   //   if(goalProg = complete:false)
-  //   //   if (err) { return res.status(500).send(err); }
-  //   //   return res.redirect(`/users/show/${req.body._user}`);
-  //   })
-  // },
-
-
-
   readOne: function(req, res) {
     Goal.
     findById(req.param('goalsId')).

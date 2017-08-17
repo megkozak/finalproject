@@ -3,10 +3,8 @@ extends layout
 block body
   div.jumbotron
     div.container-fluid
+      p.text-center.strong Sign Up Here!
       form(id="user name", method="POST", action="/signup")
-        div.form-group
-          label(for="nameInput") Name
-          input(type="text", id="nameInput", placeholder="Enter your name here", name="name").form-control
         div.form-group
           label(for="emailInput") Email
           input(type="text", id="emailInput", placeholder="Enter your email here", name="email").form-control

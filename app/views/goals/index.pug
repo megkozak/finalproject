@@ -7,19 +7,19 @@ block body
         div.form-group
           label(for="goalInput")
         div.form-group
-          input(type="text", id="goalInput", placeholder="Enter your goal title", name="title").form-control
+          input(type="text", id="goalInput", placeholder="Enter your goal", name="title").form-control
         div.form-group
-          input(type="text", id="goalInput", placeholder="Enter your goal description", name="body").form-control
+          input(type="text", id="goalInput", placeholder="Description", name="body").form-control
         div.form-group
-          input(type="text", id="goalInput", placeholder="Enter your goal weight", name="weight").form-control
+          input(type="text", id="goalInput", placeholder="Points", name="weight").form-control
         div.form-group
           button(type="submit") Submit
       div
-        p= `Total Weight: ${totalWeight}`
+        p= `Total Points: ${totalWeight}`
 
   div.container
     if !goals
-      //- p No goals found!
+      p No goals found!
     else
       each goal in goals
         if goal.complete
@@ -31,10 +31,10 @@ block body
             strike= goal.date
           p
             strike= goal.weight
-          a(href=`/goals/${goal.id}/undo`) Undo
+          a(href=`/goals/${goal._id}/undo`) Undo
         else
           h2= goal.title || 'No Title'
           p= goal.body || 'No Body'
           p= goal.date
           p= goal.weight
-          a(href=`/goals/${goal.id}/complete`) Complete
+          a(href=`/goals/${goal._id}/complete`) Complete

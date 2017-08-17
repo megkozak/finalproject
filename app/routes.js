@@ -24,8 +24,8 @@ module.exports = function(app, passport) {
   app.get('/goals/show/:goalsId', goalsController.readOne)
   // app.get('/goals/show/:goalsId', goalsController.readOne)
   app.get('/goals/update/:goalsId', goalsController.update)
-  app.get('/goals/:goalId/complete', authenticate.admin, goalsController.complete)
-  app.get('/goals/:goalId/undo', authenticate.admin, goalsController.undo)
+  app.get('/goals/:goalId/complete', authenticate.user, goalsController.complete)
+  app.get('/goals/:goalId/undo', authenticate.user, goalsController.undo)
 
   //views
   app.get('/', userController.home)
