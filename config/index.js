@@ -10,9 +10,3 @@ module.exports = {
 
 
 // Sigup Page
-
-// test signup page if the user is being created with username and password
-
-// Test login, if the created user can login
-
-// If the above things work, Research on how to authorize users in controller lever eg: /goals showuld redirect to login if user is not logged in
