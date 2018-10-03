@@ -31,9 +31,9 @@ app.use((req, res, next) => {
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/app/views'));
 
-mongoose.connect(config.database_url);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/polling');
 
 setupRoutes(app, passport);
 
-app.listen(port);
+app.listen(process.env.PORT || 3000, () => console.log('Server has started'));
 console.log("Listening on " + port);
